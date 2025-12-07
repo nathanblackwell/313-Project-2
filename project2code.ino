@@ -1,7 +1,8 @@
 #include <Servo.h>
 
-Servo myservo;
+Servo myservo1;
 
+Servo myservo2;
 
   // Pins.
 const int trigPin = 11;  
@@ -19,7 +20,8 @@ const int buttonPin = 2;
   int previousbuttonState = 0;
   
 void setup() {
-  myservo.attach(9);
+  myservo1.attach(9);
+  myservo2.attach(6);
 
   // I/O.
   pinMode(trigPin, OUTPUT);
@@ -47,7 +49,7 @@ if (currentTime - previousTime >= 2) {
 if (currentTime - previousTime >= 12) {
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
-}
+
   
 // Distance.
   distance = duration * 0.034 / 2;
@@ -61,14 +63,18 @@ if (currentTime - previousTime >= 12) {
 
 // If/else.
   if (distance < minimum) {
-      myservo.write(20);
+      myservo1.write(20);
+      myservo2.write(20);
   delay(1000);
-  myservo.write(0);
+  myservo1.write(0);
+  myservo2.write(0);
   delay(1000);
-  myservo.write(20);
+  myservo1.write(20);
+  myservo2.write(20);
   delay(1000);
   } else {
-    myservo.write(0);
+    myservo1.write(0);
+    myservo2.write(0);
     } 
     if (buttonState != previousbuttonState){
     if (buttonState = HIGH){
@@ -83,4 +89,5 @@ if (currentTime - previousTime >= 12) {
  
   // Timer reset.
   previousTime = currentTime;
+}
 }
